@@ -1,8 +1,11 @@
 package com.sidd.quiz.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.sidd.quiz.Dao.QuestionDao;
@@ -14,15 +17,35 @@ public class QuestionService {
 	@Autowired
 	QuestionDao questionDao ;
 
-	public List<Question> getAllQuestions() {
-		// TODO Auto-generated method stub
-		return questionDao.findAll();
+	public ResponseEntity<List<Question>> getAllQuestions() {
+	try {
+		return new ResponseEntity<>( questionDao.findAll(), HttpStatus.OK);
+	}catch(Exception e) {
+		e.printStackTrace();
+	}
+		  return new ResponseEntity<>( new ArrayList<>(), HttpStatus.BAD_REQUEST );
+		
 	}
 
-	public List<Question> getQuestionsByCategories(String category) {
-		// TODO Auto-generated method stub
-		return questionDao.findByCategory(category) ;
+	public ResponseEntity<List<Question>> getQuestionsByCategories(String category) {
+		
+		
+		try {
+		return new ResponseEntity<>(   questionDao.findByCategory(category), HttpStatus.OK) ;
+		}catch(Exception e) {
+			e.printStackTrace();
+		} return new ResponseEntity<>( new ArrayList<>(), HttpStatus.BAD_REQUEST );
 	}
 
+	public  ResponseEntity<String> addQuestion(Question newQuestion) {
+		try {
+		  questionDao.save(newQuestion);
+		  return new ResponseEntity<>(  "Success", HttpStatus.CREATED);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		 return new ResponseEntity<>( "Error", HttpStatus.BAD_REQUEST );
 	
+
+	}
 }
