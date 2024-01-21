@@ -1,9 +1,10 @@
-package RequestBody;
+package com.sidd.quiz.RequestBody;
 
 public class QuizRequest {
 private int NoOfQuestion;
 private String quizTitle;
 private String QuestionCategories;
+
 public int getNoOfQuestion() {
 	return NoOfQuestion;
 }

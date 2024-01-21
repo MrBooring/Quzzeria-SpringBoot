@@ -1,4 +1,4 @@
-package com.sidd.quiz.Dao;
+package com.sidd.quiz.Repository;
 
 import java.util.List;
 

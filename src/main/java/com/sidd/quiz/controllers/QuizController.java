@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
  import org.springframework.web.bind.annotation.RestController;
 
- import com.sidd.quiz.model.Quiz;
-import com.sidd.quiz.responseBody.QuestionResponse;
+import com.sidd.quiz.RequestBody.QuizRequest;
+import com.sidd.quiz.model.Quiz;
+ import com.sidd.quiz.responseBody.QuestionResponse;
 import com.sidd.quiz.service.QuizService;
-
-import RequestBody.QuizRequest;
+ 
 
 @RestController
-@RequestMapping("quiz")
+@RequestMapping("/user/quiz")
 public class QuizController {
 	@Autowired
 	QuizService quizService;
